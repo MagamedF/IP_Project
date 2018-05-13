@@ -1,0 +1,18 @@
+ try {
+        $connect = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $query="INSERT INTO News VALUES ('$content','$title')";
+
+        $stmt = $connect->prepare($query); 
+        $stmt->execute();
+         
+         echo "OK 200";
+ 
+    }
+    catch (PDOException $except) {
+        echo  $except->getMessage();
+    }
+    $connect = null;
+
+}
